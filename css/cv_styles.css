@@ -1,0 +1,361 @@
+/* =========================================================
+   Computer Vision App CSS Stylesheet File: cv_styles.css
+   =========================================================
+   Course: Software Development Bootcamp Course
+   Assignment # 2: Interactive Website
+   =========================================================
+   Developer: Mohsen Ghazel
+   Version: 26-Mar-2026
+   =========================================================
+   TABLE OF CONTENTS:
+   =========================================================
+    1. RESET & GLOBAL STYLES: Base typography and body defaults
+    2. HEADER & NAVIGATION: Top banner, branding, and nav links
+    3. HERO SECTION: Page introduction and headers
+    4. MAIN LAYOUT: Containers and structural wrappers
+    5. SIDEBAR & CONTROLS: Input panel and sidebar styling
+    6. CANVAS & DISPLAY: Image areas and canvas elements
+    7. INTERACTIVE ELEMENTS: Buttons and hover states
+    8. FOOTER: Page end and "Back to Top" utility
+   ========================================================= 
+*/
+
+/* 
+=========================================================-
+1. RESET & GLOBAL STYLES
+=========================================================-
+*/
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    /* Flex-grow on main-canvas-wrapper needs a flex body if using sticky footers */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* --- Root Design Tokens --- */
+:root {
+    /* Radii */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 18px;
+}
+
+/* 
+=========================================================-
+2. HEADER & NAVIGATION 
+=========================================================-
+*/
+.top-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%; /* Changed to percentage for flexibility */
+    background-color: #1a237e;
+    min-height: 100px; /* Use min-height so it can expand if items wrap */
+    height: auto;      /* Allows container to grow if needed */
+    color: white;
+    flex-wrap: wrap;   /* Crucial: allows items to move to next line instead of overlapping */
+}
+
+/* Styled Logo with White Border */
+.top-banner img {
+    height: 80px;               /* Keeps it from being too big */
+    width: auto;
+    border: 2px solid white;    /* The white border */
+    padding: 5px;               /* Space between logo and border */
+    border-radius: var(--radius-sm); /* Matches your global theme radius */
+    background-color: rgba(255, 255, 255, 0.1); /* Optional: slight glow effect */
+    transition: transform 0.3s ease;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 10px;
+    margin: 10px 0;    /* Added vertical margin for when it wraps */
+    flex-wrap: wrap;   /* Allows individual links to wrap on very small screens */
+    justify-content: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #e3f2fd;
+    padding: 8px 15px; /* Slightly reduced padding for better fit */
+    border-radius: 25px;
+    font-weight: 600;
+    white-space: nowrap; /* Keeps link text on one line */
+    transition: background-color 0.3s ease;
+}
+
+/* Mobile Fix: Centers everything when the screen is small */
+@media (max-width: 768px) {
+    .top-banner {
+        flex-direction: column; /* Stacks logo/title above the menu */
+        justify-content: center;
+        padding: 20px;
+    }
+    
+    .nav-links {
+        padding: 0;
+        gap: 5px;
+    }
+
+    /* Styled Logo with White Border */
+    .top-banner img {
+        height: 50px;               /* Keeps it from being too big */
+        width: auto;
+        border: 2px solid white;    /* The white border */
+        padding: 5px;               /* Space between logo and border */
+        border-radius: var(--radius-sm); /* Matches your global theme radius */
+        background-color: rgba(255, 255, 255, 0.1); /* Optional: slight glow effect */
+        transition: transform 0.3s ease;
+    }
+}
+
+.nav-links a.active {
+    background-color: #2979ff;
+    color: white;
+}
+
+/* 
+=========================================================-
+3. HERO SECTION
+=========================================================-
+*/
+.hero-area {
+    text-align: center;
+    padding: 30px 20px;
+    background: #ffffff;
+    border-bottom: 4px solid #1a237e;
+}
+
+.hero-area h1 {
+    font-weight: 800;
+    color: #1a237e;
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+}
+
+/* Standard Bootstrap behavior (often included) */
+.text-muted {
+    color: #6c757d !important; /* Muted gray color */
+}
+
+/* Custom styling for the author name */
+.author-tag {
+    font-weight: 500;       /* Slightly bolder than body text */
+    font-size: 0.9em;      /* Slightly smaller */
+    text-decoration: none; /* If it's a link, remove underline */
+}
+
+/* Combine with text-muted for the specific usage */
+.author-tag.text-muted {
+    opacity: 0.8;          /* Adds extra subtlety */
+}
+
+
+/* 
+=========================================================-
+4. MAIN LAYOUT
+=========================================================-
+/* 
+   ---------------------------------------------------------
+   4.1 TYPOGRAPHY
+   --------------------------------------------------------- 
+*/
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    /* TYPOGRAPHY WITH GOOGLE FONTS */
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    /*border-bottom: 2px solid var(--accent-color);*/
+    padding-bottom: 10px;
+}
+
+h2 {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+}
+
+/* paragraphs */
+p {
+    margin-bottom: 15px;
+}
+
+/* Ordered/un-ordered lists */
+ul, ol {
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+/* Lists */
+li {
+    margin-bottom: 5px;
+}
+
+/* 
+   ---------------------------------------------------------
+   4.2 Background color
+   --------------------------------------------------------- 
+*/
+/* The background wrapper for the primary content area */
+.main-canvas-wrapper {
+    background-color: #e8f5e9; /* Light Green background */
+    padding: 40px 0;
+    flex-grow: 1;
+}
+
+/* 
+   ---------------------------------------------------------
+   4.3 Alignment
+   --------------------------------------------------------- 
+*/
+/* Centered content container with flex side-by-side layout */
+.container {
+    display: flex; 
+    max-width: 95%;
+    margin: auto;
+}
+
+/* 
+=========================================================-
+5. SIDEBAR & CONTROLS
+=========================================================-
+*/
+.sidebar {
+    width: 320px;
+    background: #d9ecff; /* Light Blue Sidebar */
+    padding: 25px;
+    border-radius: 12px;
+    border: 2px solid #1a237e;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.sidebar h3 {
+    font-size: 1rem;
+    color: #1a237e;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+/* 
+=========================================================-
+6. CANVAS & DISPLAY (Fixed)
+=========================================================-
+*/
+/* Right-side area containing the image/canvas boxes */
+.canvasArea {
+    flex: 1;
+    display: flex;
+    gap: 20px;
+    margin-left: 20px;
+    flex-wrap: wrap; /* FIX: Allows items to drop to the next line */
+}
+
+/* Individual wrapper for image or canvas outputs */
+.imageBox {
+    flex: 1;
+    min-width: 300px; /* FIX: Prevents boxes from getting too skinny */
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+/* Canvas and Image styling: ensures responsiveness */
+canvas, .imageBox img {
+    width: 100% !important;
+    max-width: 100%;    /* Ensures it never overflows the box */
+    height: auto;
+    background: #333;
+    border-radius: 4px;
+    display: block;     /* Removes extra bottom spacing */
+    margin: 0 auto;     /* Centers images */
+}
+
+/* Mobile Fix: Removes left margin on small screens */
+@media (max-width: 768px) {
+    .canvasArea {
+        margin-left: 0; /* Align with the rest of the page on mobile */
+    }
+    
+    .imageBox {
+        min-width: 100%; /* Forces boxes to take full width on phones */
+    }
+}
+
+/* 
+=========================================================-
+7. INTERACTIVE ELEMENTS (Buttons)
+=========================================================-
+*/
+/* Shared button base styles */
+#runButton, 
+#downloadButton {
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    color: white;
+    transition: 0.3s;
+}
+
+#runButton { 
+    background: #1a237e; 
+}
+
+#downloadButton { 
+    background: #2e7d32; 
+}
+
+/* Hover effects for primary action */
+#runButton:hover { 
+    background: #283593; 
+    transform: scale(1.02); 
+}
+
+/* 
+=========================================================-
+8. FOOTER
+=========================================================-
+*/
+footer {
+    padding: 40px 0;
+    text-align: center;
+    background: #f4f7f6;
+}
+
+.footer-line {
+    width: 80%;
+    height: 3px;
+    background-color: #1a237e;
+    margin: 0 auto 20px auto;
+}
+
+/* Floating "Back to Top" circular button */
+.topButton {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #1a237e;
+    color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}

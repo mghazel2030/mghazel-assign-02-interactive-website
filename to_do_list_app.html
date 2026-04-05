@@ -1,0 +1,132 @@
+<!--  
+   =========================================================
+   File: to_do_list_app.html
+   =========================================================
+   Course: Software Development Bootcamp Course
+   Assignment # 2: Interactive Website
+   =========================================================-
+   Title: Interactive To-Do-List App
+   ========================================================= 
+   - An interactive To-Do-List App, which allows users to:
+    - Add a  new task to the list
+    - Remove an existing task
+    - Mark a task a complete
+    - List all tasks
+    - List all completed tasks
+    ========================================================= 
+    Developer: Mohsen Ghazel
+    Version: 26-Mar-2026
+    ========================================================= 
+-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>To-Do-List | Interactive To-Do-List </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Page Styles Sheet-->
+        <link rel="stylesheet" href="./css/tdl_styles.css">
+    </head>
+
+    <body>
+        <!-- Go to top of the page: At the top of your page -->
+        <div id="top"></div>
+
+        <!-- ============================================ -->
+        <!-- 1: Top Banner Navigation Menu -->
+        <!-- ============================================ -->
+        <header class="top-banner">
+            <div class="logo">
+                <a href="/">
+                    <img src="./assets/logo/js-animation.gif" height="45px" alt="JS-Animation">
+                </a>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="computer_vision_app.html">Computer Vision Toolbox</a></li>
+                    <li><a href="to_do_list_app.html"  class="active">To-Do List</a></li>
+                    <li><a href="rock_paper_scissors_app.html">Rock Paper Scissors</a></li>
+                    <li><a href="weather_app.html">Weather Forecast</a></li>
+                    <li><a href="transit_app.html">Live Transit Map</a></li>
+                    <li><a href="contact.html">Contact Me</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- ============================================ -->
+        <!-- 2: HERO SECTION: Description of the App -->
+        <!-- ============================================ -->
+        <section class="hero-area">
+            <h1>Interactive To-Do List Manager</h1>
+            <br>
+            <p class="subtitle">A to-do list app designed to organize, and track daily tasks and projects, serving as a dynamically-accessible alternative to paper lists.</p>
+            <br>
+            <div class="author-tag text-muted">Developed by: Mohsen Ghazel</div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- 3: Main Body (The Canvas) -->
+        <!-- ============================================ -->
+        <main class="main-canvas">
+            <div class="app">
+                <header>
+                    <h1>Update List</h1>
+                    <p id="todayDate"></p>
+                    <!-- Added instruction for the user -->
+                    <span class="instruction-note">
+                        Tip: Click the checkbox on the left to mark a task as completed.
+                    </span>
+                </header>
+
+                <div class="input-container">
+                    <input id="taskInput" placeholder="Enter a new task...">
+                    <button id="addBtn" class="btn btn-primary">Add Task</button>
+                </div>
+
+                <!-- Inside the .app container -->
+                <div class="filters">
+                    <button data-filter="all" class="active">All Tasks</button>
+                    <button data-filter="active">Pending</button>
+                    <button data-filter="completed">Completed</button>
+                </div>
+
+                <ul id="taskList" class="list-unstyled">
+                    <!-- Example of the new organized structure -->
+                    <li class="task-item">
+                        <span class="task-text">Complete OpenCV Project</span>
+                        <div class="task-btns">
+                            <button class="btn-edit btn-sm">Edit</button>
+                            <button class="btn-delete btn-sm">Delete</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </main>
+
+        <!-- Scroll to the very top of the document -->
+        <a href="#top" class="topButton">↑</a>
+
+        <!-- ============================================ -->
+        <!-- 4: FOOTER -->
+        <!-- ============================================ -->
+        <footer>
+            <div class="footer-line"></div>
+            <small>&copy; 2026 | Mohsen Ghazel | Interactive Website | To-Do List App</small>
+        </footer>
+
+        <!-- ============================================ -->
+        <!-- 5: The JavaScript Files: -->
+        <!-- ============================================ -->
+        <!-- Bootstrap JS File -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- The page JS Files  -->
+        <script src="./js/tdl_script.js"></script>
+    </body>
+</html>

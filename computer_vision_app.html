@@ -1,0 +1,145 @@
+<!--
+   =========================================================
+   File: computer_vision_app.html
+   =========================================================
+   Course: Software Development Bootcamp Course
+   Assignment # 2: Interactive Website
+   =========================================================-
+   Title: Interactive Computer Vision Toolbox using OpenCV-JavaScript
+   ========================================================= 
+   - An interactive, browser-based platform for experimenting 
+     with Image Processing and Computer Vision algorithms using OpenCV.js.
+        - This project provides a hands-on visual learning environment where users can:
+            - Upload an input image.
+            - Select the type of image processing operation to be applied on the selected image
+            - Select the algorithm to process the image
+            - Adjust algorithm parameter(s) in real-time
+            - Observe the results instantly.
+    ========================================================= 
+    Developer: Mohsen Ghazel
+    Version: 25-Mar-2026
+    ========================================================= 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Interactive Computer Vision Toolbox | OpenCV-JS </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- OpenCV-JS Library (Keeping async as per your requirement) -->
+    <script async src="https://docs.opencv.org/4.x/opencv.js"></script>
+    <!-- Page Styles Sheet-->
+    <link rel="stylesheet" href="css/cv_styles.css">
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+    <!-- Scroll to the very top of the document -->
+    <div id="top"></div>
+    <!-- ============================================ -->
+    <!-- 1: TOP BANNER: Navigation Menu -->
+    <!-- ============================================ -->
+    <header class="top-banner">
+        <div class="logo">
+            <a href="/">
+                <img src="./assets/logo/js-animation.gif" alt="JS-Animation">
+            </a>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="computer_vision_app.html" class="active">Computer Vision Toolbox</a></li>
+                <li><a href="to_do_list_app.html">To-Do List</a></li>
+                <li><a href="rock_paper_scissors_app.html">Rock Paper Scissors</a></li>
+                <li><a href="weather_app.html">Weather Forecast</a></li>
+                <li><a href="transit_app.html">Live Transit Map</a></li>
+                <li><a href="contact.html">Contact Me</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ============================================ -->
+    <!-- 2: HERO SECTION: Description of the App -->
+    <!-- ============================================ -->
+    <section class="hero-area">
+        <h1>Interactive Computer Vision Toolbox</h1>
+        <p class="subtitle">Interactive Computer Vision Toolbox for Demonstrating Several Image Processing Applications using OpenCV-JavaScript.</p>
+        <div class="author-tag text-muted">Developed by: Mohsen Ghazel</div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- 3: MAIN CANVAS AREA: Sidebar and main display canvas -->
+    <!-- ============================================ -->
+    <main class="main-canvas-wrapper">
+        <div class="container">
+            <!-- Side-bar container: EXACTLY as original -->
+            <div class="sidebar">
+                <h3>1. Upload the input image:</h3>
+                <input type="file" id="imageInput" accept="image/*">
+
+                <h3>2. Select the application:</h3>
+                <select id="operationSelect">
+                    <option value="">Select operation</option>
+                </select>
+                <textarea id="operationDescription" readonly></textarea>
+
+                <h3>3. Select the algorithm:</h3>
+                <select id="algorithmSelect">
+                    <option value="">Select algorithm</option>
+                </select>
+                <textarea id="algorithmDescription" readonly></textarea>
+
+                <h3>4. Fine-tune the parameter(s):</h3>
+                <div id="parameterContainer"></div>
+
+                <!-- Your original Run button (ID unchanged) -->
+                <button id="runButton">Run Algorithm</button>
+                <button id="downloadButton">Download Result</button>
+                
+                <div id="runtimeBox">
+                    Runtime: <span id="runtimeValue">0</span> ms
+                </div>
+            </div>
+
+            <!-- Image display canvas: EXACTLY as original -->
+            <div class="canvasArea">
+                <div class="imageBox">
+                    <h5>Original Image</h5>
+                    <canvas id="originalCanvas"></canvas>
+                </div>
+                <div class="imageBox">
+                    <h5>Processed Image</h5>
+                    <canvas id="outputCanvas"></canvas>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scroll to the very top of the document -->
+    <a href="#top" class="topButton">↑</a>
+
+    <!-- ============================================ -->
+    <!-- 4: FOOTER -->
+    <!-- ============================================ -->
+    <footer>
+        <div class="footer-line"></div>
+        <small>&copy; 2026 | Mohsen Ghazel | Interactive Website | Computer Vision App</small>
+    </footer>
+
+    <!-- ============================================ -->
+    <!-- 5: The JavaScript Files: -->
+    <!-- ============================================ -->
+    <!-- Bootstrap JS File -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- The page JS Files  -->
+    <script src="js/cv_data.js"></script>
+    <script src="js/cv_ui.js"></script>
+    <script src="js/cv_algorithms.js"></script>
+    <script src="js/cv_script.js"></script>
+</body>
+</html>

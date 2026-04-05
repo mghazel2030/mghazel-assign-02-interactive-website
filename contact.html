@@ -1,0 +1,122 @@
+<!--
+   =========================================================
+   File: contact.html
+   =========================================================
+   Course: Software Development Bootcamp Course
+   Assignment # 2: Interactive Website
+   =========================================================-
+   Title: Contact me page
+   ========================================================= 
+   - Home Page of the Interactive Website.
+   ========================================================= 
+   Developer: Mohsen Ghazel
+   Version: 31-Mar-2026
+   ========================================================= 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact | Your Name</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- My Styles Sheet-->
+    <link rel="stylesheet" href="css/home_styles.css">
+</head>
+
+<body>
+    <!-- Scroll to the very top of the document -->
+    <div id="top"></div>
+
+    <!-- ============================================ -->
+    <!-- 1: TOP BANNER  -->
+    <!-- ============================================ -->
+    <header class="top-banner">
+        <div class="logo">
+            <a href="/">
+                <img src="./assets/logo/js-animation.gif" alt="JS-Animation">
+            </a>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="computer_vision_app.html">Computer Vision Toolbox</a></li>
+                <li><a href="to_do_list_app.html">To-Do List</a></li>
+                <li><a href="rock_paper_scissors_app.html">Rock Paper Scissors</a></li>
+                <li><a href="weather_app.html">Weather Forecast</a></li>
+                <li><a href="transit_app.html">Live Transit Map</a></li>
+                <li><a href="contact.html" class="active">Contact Me</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ============================================ -->
+    <!-- 2: HERO SECTION -->
+    <!-- ============================================ -->
+    <section class="hero-area">
+        <h1>Contact me</h1>
+        <div class="author-tag text-muted">Developed by: Mohsen Ghazel</div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- 3: TOP BANNER  -->
+    <!-- ============================================ -->
+    <main>
+        <section>
+            <!----------------------------------------------------------->
+            <!-- Contact Form  -->
+            <!----------------------------------------------------------->
+            <form id="contact-form" novalidate>
+                <!-- Name -->
+                <div class="form-group">
+                    <label for="name">Full Name:</label>
+                    <input type="text" id="name" name="name" required minlength="2">
+                    <span class="error-message" id="name-error"></span>
+                </div>
+                <!-- Email -->
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    <span class="error-message" id="email-error"></span>
+                </div>
+                <!-- Message -->
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" required minlength="10"></textarea>
+                    <span class="error-message" id="message-error"></span>
+                </div>
+
+                <!-- Button -->
+                <div class="button-container">
+                    <button type="submit">Send Message</button>
+                </div>
+
+            </form>
+        </section>
+    </main>
+    
+    <!-- Scroll to the very top of the document -->
+    <a href="#top" class="topButton">↑</a>
+
+    <!-- ============================================ -->
+    <!-- 4: FOOTER -->
+    <!-- ============================================ -->
+    <footer>
+        <div class="footer-line"></div>
+        <small>&copy; 2026 | Mohsen Ghazel | Interactive Website | Contact</small>
+    </footer>
+
+    <!-- ============================================ -->
+    <!-- 5: The JavaScript Files: -->
+    <!-- ============================================ -->
+    <!-- Bootstrap JS File -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- The page JS Script File -->
+    <script src="js/home_script.js"></script>
+</body>
+</html>

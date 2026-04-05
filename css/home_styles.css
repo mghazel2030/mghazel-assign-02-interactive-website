@@ -1,0 +1,606 @@
+/* =========================================================
+   Stylesheet file: styles.css
+   ---------------------------------------------------------
+   Software Development Bootcamp Course
+   Assignment # 1: Personal Website
+   ---------------------------------------------------------
+   Student: Mohsen Ghazel
+   Professional Digital Portfolio 
+   =========================================================
+   Structure:
+   ---------------------------------------------------------
+   Part 1  : Global Variables
+   Part 2  : Header
+   Part 3  : Navigation
+   Part 4  : Main Body
+             4.1 Typography
+             4.2 Layout Containers
+             4.3 Sections
+             4.4 Components
+             4.5: Tables
+             4.6 Forms
+             4.7 Utilities
+   Part 5  : Footer
+   Part 6  : Media Responsiveness
+   ========================================================= */
+
+/* =========================================================
+   Part 1: GLOBAL VARIABLES
+   ========================================================= */
+
+/* --- Universal Reset --- */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    min-width: 0; 
+}
+
+/* --- Root Design Tokens --- */
+:root {
+    --primary-color: #2008f7;
+    --accent-color: #0671f4;
+    --background-color: #cefad0;
+    --text-color: #060606;
+    --white-color: #ffffff;
+    --border-color: #dddddd;
+    --danger-color: #dc3545;
+
+    /* Radii */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 18px;
+}
+
+/* --- Global HTML Behavior --- */
+html {
+    scroll-behavior: smooth;
+}
+
+/* --- Base Body --- */
+body {
+    /*  TYPOGRAPHY WITH GOOGLE FONTS */
+    font-family: 'Inter', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+
+    /* Horizontal left/right margin-spacing */
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+/* --- Responsive Images --- */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* 
+----------------------------------------------------------------
+2. HEADER & NAVIGATION 
+----------------------------------------------------------------
+*/
+.top-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%; /* Changed to percentage for flexibility */
+    background-color: #1a237e;
+    min-height: 100px; /* Use min-height so it can expand if items wrap */
+    height: auto;      /* Allows container to grow if needed */
+    color: white;
+    flex-wrap: wrap;   /* Crucial: allows items to move to next line instead of overlapping */
+}
+
+/* Styled Logo with White Border */
+.top-banner img {
+    height: 80px;               /* Keeps it from being too big */
+    width: auto;
+    border: 2px solid white;    /* The white border */
+    padding: 5px;               /* Space between logo and border */
+    border-radius: var(--radius-sm); /* Matches your global theme radius */
+    background-color: rgba(255, 255, 255, 0.1); /* Optional: slight glow effect */
+    transition: transform 0.3s ease;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 10px;
+    margin: 10px 0;    /* Added vertical margin for when it wraps */
+    flex-wrap: wrap;   /* Allows individual links to wrap on very small screens */
+    justify-content: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #e3f2fd;
+    padding: 8px 15px; /* Slightly reduced padding for better fit */
+    border-radius: 25px;
+    font-weight: 600;
+    white-space: nowrap; /* Keeps link text on one line */
+    transition: background-color 0.3s ease;
+}
+
+/* Mobile Fix: Centers everything when the screen is small */
+@media (max-width: 768px) {
+    .top-banner {
+        flex-direction: column; /* Stacks logo/title above the menu */
+        justify-content: center;
+        padding: 20px;
+    }
+    
+    .nav-links {
+        padding: 0;
+        gap: 5px;
+    }
+
+    /* Styled Logo with White Border */
+    .top-banner img {
+        height: 50px;               /* Keeps it from being too big */
+        width: auto;
+        border: 2px solid white;    /* The white border */
+        padding: 5px;               /* Space between logo and border */
+        border-radius: var(--radius-sm); /* Matches your global theme radius */
+        background-color: rgba(255, 255, 255, 0.1); /* Optional: slight glow effect */
+        transition: transform 0.3s ease;
+    }
+}
+
+.nav-links a.active {
+    background-color: #2979ff;
+    color: white;
+}
+
+
+/* 
+----------------------------------------------------------------
+3. HERO SECTION
+----------------------------------------------------------------
+*/
+.hero-area {
+    text-align: center;
+    padding: 30px 20px;
+    background: #ffffff;
+    border-bottom: 4px solid #1a237e;
+}
+
+.hero-area h1 {
+    font-weight: 800;
+    color: #1a237e;
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+}
+
+/* Standard Bootstrap behavior (often included) */
+.text-muted {
+    color: #6c757d !important; /* Muted gray color */
+}
+
+/* Custom styling for the author name */
+.author-tag {
+    font-weight: 500;       /* Slightly bolder than body text */
+    font-size: 0.9em;      /* Slightly smaller */
+    text-decoration: none; /* If it's a link, remove underline */
+}
+
+/* Combine with text-muted for the specific usage */
+.author-tag.text-muted {
+    opacity: 0.8;          /* Adds extra subtlety */
+}
+
+/* =========================================================
+   Part 4: MAIN BODY
+   ========================================================= */
+/* ---------------------------------------------------------
+   4.1 TYPOGRAPHY
+   --------------------------------------------------------- */
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    /* TYPOGRAPHY WITH GOOGLE FONTS */
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    /*border-bottom: 2px solid var(--accent-color);*/
+    padding-bottom: 10px;
+}
+
+h2 {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+}
+
+/* paragraphs */
+p {
+    margin-bottom: 15px;
+}
+
+/* Ordered/un-ordered lists */
+ul, ol {
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+/* Lists */
+li {
+    margin-bottom: 5px;
+}
+
+/* ---------------------------------------------------------
+   4.2 LAYOUT CONTAINERS
+   --------------------------------------------------------- */
+/* Container */
+.container {
+    width: 100%;
+    max-width: 1200px;
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
+
+    padding: 30px;
+
+    background: var(--white-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+
+/* ---------------------------------------------------------
+   4.3 SECTIONS
+   --------------------------------------------------------- */
+
+/* Section */
+.section {
+    padding: 40px 0;
+}
+
+/* Hero */
+.hero {
+    text-align: center;
+    padding: 80px 20px;
+    background-color: var(--background-color);
+    border-radius: 8px;
+}
+
+/* Projects Grid */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+/* Project Card */
+.project-card {
+    background: var(--white-color);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    transition: transform 0.2s ease;
+}
+
+/* Project Card */
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+
+/* ---------------------------------------------------------
+   4.4 COMPONENTS
+   --------------------------------------------------------- */
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--accent-color);
+    color: var(--white-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.btn:hover {
+    background-color: var(--primary-color);
+}
+
+/* ---------------------------------------------------------
+   4.5 TABLES
+   --------------------------------------------------------- */
+
+.modern-table {
+    width: 100%;
+    border-collapse: collapse;  
+    margin: 30px 0;
+    background: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Header */
+.modern-table thead tr {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+}
+
+.modern-table th {
+    padding: 16px 20px;
+    text-align: center;
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 0.95rem;
+    border: 1px solid rgba(255,255,255,0.2); 
+}
+
+/* Body Cells */
+.modern-table td {
+    padding: 16px 20px;
+    font-size: 0.95rem;
+    border: 1px solid #677aa0; 
+}
+
+/* Zebra striping */
+.modern-table tbody tr:nth-child(even) {
+    background-color: #f8faff;
+}
+
+/* Row hover */
+.modern-table tbody tr:hover {
+    background-color: #eef3ff;
+    transition: background 0.2s ease;
+}
+
+/* Improve links inside table */
+.modern-table td a {
+    color: var(--primary-color);
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.modern-table td a:hover {
+    text-decoration: underline;
+}
+
+/* ---------------------------------------------------------
+   4.6 FORMS
+   --------------------------------------------------------- */
+/* Container & Centering */
+#contact-form {
+  width: 75%;           /* 75% of the page width */
+  max-width: 800px;     /* Prevents stretching on ultra-wide screens */
+  margin: 60px auto;    /* Space above/below, centered horizontally */
+  padding: 40px;
+  box-sizing: border-box;
+  
+  /* Background & Outer Border */
+  background-color: #e6f2ff; /* Light-blue background */
+  border: 2px solid #0056b3;  /* Solid blue border around the form */
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 86, 179, 0.1); /* Soft blue shadow */
+  
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Form Group Layout */
+.form-group {
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Label Styling: Blue & Bold */
+label {
+  color: #0056b3;       /* Bold blue font */
+  font-weight: 700;     
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Input & Textarea Styling */
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 100%;
+  padding: 14px;
+  background-color: #ffffff; /* White background for text clarity */
+  border: 1px solid #0056b3;  /* Thin blue border around inputs */
+  border-radius: 6px;
+  font-size: 16px;
+  color: #333;
+  transition: all 0.2s ease;
+  box-sizing: border-box; 
+}
+
+/* Focus state for better accessibility */
+input:focus, 
+textarea:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.15);
+}
+
+textarea {
+  height: 150px;
+  resize: vertical; 
+}
+
+/* Right-Aligning the Button Container */
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+/* Button Styling */
+button[type="submit"] {
+  background-color: #007bff; /* Primary blue */
+  color: #ffffff;            /* White text */
+  padding: 14px 45px;
+  border: none;
+  border-radius: 30px;       /* Rounded edges */
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+/* Button Hover Effects */
+button[type="submit"]:hover {
+  background-color: #0056b3;
+  box-shadow: 0 5px 15px rgba(0, 86, 179, 0.3);
+  transform: translateY(-2px);
+}
+
+button[type="submit"]:active {
+  transform: translateY(0);
+}
+
+/* Validation Error Text */
+.error-message {
+  color: #d93025;
+  font-size: 0.85rem;
+  margin-top: 6px;
+  font-weight: 600;
+  display: none;
+}
+
+
+/* ---------------------------------------------------------
+   4.7 UTILITIES
+   --------------------------------------------------------- */
+/* Indenting */
+.custom-indent {
+    padding-left: 20px;
+}
+
+/* Back to the Top link */
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+
+/* =========================================================
+   Part 5: FOOTER
+   ========================================================= */
+   
+footer {
+    padding: 40px 0;
+    text-align: center;
+    background: #f4f7f6;
+}
+
+.footer-line {
+    width: 80%;
+    height: 3px;
+    background-color: #1a237e;
+    margin: 0 auto 20px auto;
+}
+
+/* Floating "Back to Top" circular button */
+.topButton {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #1a237e;
+    color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* =========================================================
+   Part 6: RESPONSIVENESS
+   ========================================================= */
+
+   /* ---------------------------------------------------------
+   6.1 Responsive media
+   --------------------------------------------------------- */
+/* Large Screens */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1400px;
+    }
+}
+
+/* Laptops */
+@media (max-width: 1200px) {
+    .container {
+        width: 95%;
+    }
+}
+
+/* Tablets */
+@media (max-width: 992px) {
+    .project-grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+  /* Styles for tablets and phones go here */
+  .container { flex-direction: column; }
+}
+
+/* ---------------------------------------------------------
+   6.2 Responsive Table behavior
+   --------------------------------------------------------- */
+
+@media (max-width: 768px) {
+
+    .modern-table thead {
+        display: none;
+    }
+
+    .modern-table,
+    .modern-table tbody,
+    .modern-table tr,
+    .modern-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .modern-table tr {
+        margin-bottom: 15px;
+        background: var(--white-color);
+        padding: 15px;
+        border-radius: 6px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+
+    .modern-table td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+        border-bottom: none;
+    }
+
+    .modern-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 15px;
+        width: 45%;
+        font-weight: 600;
+        text-align: left;
+        color: var(--primary-color);
+    }
+}

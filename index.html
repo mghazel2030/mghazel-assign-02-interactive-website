@@ -1,0 +1,142 @@
+<!--
+   =========================================================
+   File: index.html
+   =========================================================
+   Course: Software Development Bootcamp Course
+   Assignment # 2: Interactive Website
+   =========================================================-
+   Title: Interactive Website | Home Page
+   ========================================================= 
+   - Home Page of the Interactive Website.
+   ========================================================= 
+   Developer: Mohsen Ghazel
+   Version: 25-Mar-2026
+   ========================================================= 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Interactive Website | Home Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- My Styles Sheet-->
+    <link rel="stylesheet" href="css/home_styles.css">
+</head>
+
+<body>
+    <!-- Scroll to the very top of the document -->
+    <div id="top"></div>
+
+    <!-- ============================================ -->
+    <!-- 1: TOP BANNER  -->
+    <!-- ============================================ -->
+    <header class="top-banner">
+        <div class="logo">
+            <a href="/">
+                <img src="./assets/logo/js-animation.gif" alt="JS-Animation">
+            </a>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="computer_vision_app.html">Computer Vision Toolbox</a></li>
+                <li><a href="to_do_list_app.html">To-Do List</a></li>
+                <li><a href="rock_paper_scissors_app.html">Rock Paper Scissors</a></li>
+                <li><a href="weather_app.html">Weather Forecast</a></li>
+                <li><a href="transit_app.html">Live Transit Map</a></li>
+                <li><a href="contact.html">Contact Me</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ============================================ -->
+    <!-- 2: HERO SECTION -->
+    <!-- ============================================ -->
+    <section class="hero-area">
+        <h1>Interactive Multi-App Website</h1>
+        <p class="subtitle">This is an interactive website using JavaScript, which is the foundational technology for creating dynamic and interactive elements across virtually all modern websites and web applications. </p>
+        <div class="author-tag text-muted">Developed by: Mohsen Ghazel</div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- 3: MAIN BODY -->
+    <!-- ============================================ -->
+    <main>
+        <section>
+            <div>
+                <table class="modern-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Page</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="#">1</td>
+                            <td data-label="Page"><a href="index.html">Home</a></td>
+                            <td data-label="Description">Home page</td>
+                        </tr>
+                        <tr>
+                            <td data-label="#">2</td>
+                            <td data-label="Page"><a href="computer_vision_app.html">Computer Vision App</a></td>
+                            <td data-label="Description">An interactive Computer Vision Toolbox demonstrating several image processing applications using OpenCV-JavaScript. The implemented image processing operations include image Enhancement, image denoising and edge detection.</td>
+                        </tr>
+                        <tr>
+                            <td data-label="#">3</td>
+                            <td data-label="Page"><a href="to_do_list_app.html"> To-Do-List App.</td>
+                            <td data-label="Description">An interactive task‑management tool with built‑in validation and filtering.</td>
+                        </tr>
+                        <tr>
+                            <td data-label="#">4</td>
+                            <td data-label="Page"><a href="rock_paper_scissors_app.html"> Rock-Paper-Scissors Game App</a></td>
+                            <td data-label="Description">An interactive Rock-Paper-Scissors game, which allows the user to play against the computer, keep the score and declare the winner.</td>
+                        </tr>
+                        <tr>
+                            <td data-label="#">5</td>
+                            <td data-label="Page"><a href="weather_app.html">Weather App</a></td>
+                            <td data-label="Description">An interactive weather forecasting, allowing user to display the weather foracast over the upcoming at any selected international major city.</td>
+                        </tr>
+                        <tr>
+                            <td data-label="#">6</td>
+                            <td data-label="Page"><a href="transit_app.html">Transit App</a></td>
+                            <td data-label="Description">An interactive Transit App displaying live locations of busses in the Massachusetts Bay Transportation Authority (MBTA) Boston Transit system.</td>
+                        </tr>
+                        <tr>
+                            <td data-label="#">7</td>
+                            <td data-label="Page"><a href="contact.html">Contact</a></td>
+                            <td data-label="Description">Contact me form.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Scroll to the very top of the document -->
+    <a href="#top" class="topButton">↑</a>
+
+    <!-- ============================================ -->
+    <!-- 4: FOOTER -->
+    <!-- ============================================ -->
+    <footer>
+        <div class="footer-line"></div>
+        <small>&copy; 2026 | Mohsen Ghazel | Interactive Website | Home</small>
+    </footer>
+
+    <!-- ============================================ -->
+    <!-- 5: The JavaScript Files: -->
+    <!-- ============================================ -->
+    <!-- Bootstrap JS File -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- The page JS Script File -->
+    <script src="js/home_script.js"></script>
+</body>
+</html>

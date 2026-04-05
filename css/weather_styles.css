@@ -1,0 +1,628 @@
+/* 
+================================================================
+Weather App CSS Stylesheet File: weather_styles.css
+================================================================
+Course: Software Development Bootcamp Course
+Assignment # 2: Interactive Website
+================================================================
+Developer: Mohsen Ghazel
+Version: 28-Mar-2026
+================================================================ 
+TABLE OF CONTENTS:
+================================================================
+1. GLOBAL VARIABLES & THEME
+2. TOP NAVIGATION BAR
+3. HERO SECTION
+4. MAIN CANVAS & APP WRAPPER
+5. SEARCH & CONTROL BAR
+6. CURRENT WEATHER PANEL
+7. HOURLY FORECAST
+8. DAILY FORECAST
+9. WEEKLY TEMPERATURE CHART
+10. FOOTER
+11. UTILITIES & ANIMATIONS
+================================================================
+*/
+
+/* =============================================================
+   1. GLOBAL VARIABLES & THEME
+   ============================================================= */
+
+:root {
+    /* Colors */
+    --bg-main: #e8f5e9;
+    --bg-card: #ffffff;
+    --bg-primary: #1a237e;
+    --bg-primary-soft: #283593;
+    --accent: #2979ff;
+
+    /* Text */
+    --text-main: #222;
+    --text-muted: #666;
+
+    /* Borders & Shadows */
+    --border-soft: #ddd;
+    --shadow-soft: 0 8px 30px rgba(0,0,0,0.05);
+
+    /* Radii */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 18px;
+
+    /* Spacing */
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+}
+
+/* Dark mode overrides */
+body.dark-mode {
+    --bg-main: #0f172a;
+    --bg-card: #111827;
+    --bg-primary: #020617;
+    --bg-primary-soft: #1e293b;
+    --accent: #38bdf8;
+
+    --text-main: #e5e7eb;
+    --text-muted: #9ca3af;
+
+    --border-soft: #1f2937;
+    --shadow-soft: 0 10px 40px rgba(0,0,0,0.6);
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* =============================================================
+   2. TOP NAVIGATION BAR
+   ============================================================= */
+.top-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%; /* Changed to percentage for flexibility */
+    background-color: #1a237e;
+    min-height: 100px; /* Use min-height so it can expand if items wrap */
+    height: auto;      /* Allows container to grow if needed */
+    color: white;
+    flex-wrap: wrap;   /* Crucial: allows items to move to next line instead of overlapping */
+}
+
+/* Styled Logo with White Border */
+.top-banner img {
+    height: 80px;               /* Keeps it from being too big */
+    width: auto;
+    border: 2px solid white;    /* The white border */
+    padding: 5px;               /* Space between logo and border */
+    border-radius: var(--radius-sm); /* Matches your global theme radius */
+    background-color: rgba(255, 255, 255, 0.1); /* Optional: slight glow effect */
+    transition: transform 0.3s ease;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 10px;
+    margin: 10px 0;    /* Added vertical margin for when it wraps */
+    flex-wrap: wrap;   /* Allows individual links to wrap on very small screens */
+    justify-content: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #e3f2fd;
+    padding: 8px 15px; /* Slightly reduced padding for better fit */
+    border-radius: 25px;
+    font-weight: 600;
+    white-space: nowrap; /* Keeps link text on one line */
+    transition: background-color 0.3s ease;
+}
+
+/* Mobile Fix: Centers everything when the screen is small */
+@media (max-width: 768px) {
+    .top-banner {
+        flex-direction: column; /* Stacks logo/title above the menu */
+        justify-content: center;
+        padding: 20px;
+    }
+    
+    .nav-links {
+        padding: 0;
+        gap: 5px;
+    }
+
+    /* Styled Logo with White Border */
+    .top-banner img {
+        height: 50px;               /* Keeps it from being too big */
+        width: auto;
+        border: 2px solid white;    /* The white border */
+        padding: 5px;               /* Space between logo and border */
+        border-radius: var(--radius-sm); /* Matches your global theme radius */
+        background-color: rgba(255, 255, 255, 0.1); /* Optional: slight glow effect */
+        transition: transform 0.3s ease;
+    }
+}
+
+.nav-links a.active {
+    background-color: #2979ff;
+    color: white;
+}
+
+
+/* =============================================================
+   3. HERO SECTION
+   ============================================================= */
+
+.hero-area {
+    text-align: center;
+    padding: 40px 20px;
+    background: var(--bg-card);
+    border-bottom: 4px solid var(--bg-primary);
+}
+
+.hero-area h1 {
+    font-weight: 800;
+    font-size: 2rem;
+    color: var(--bg-primary);
+}
+
+body.dark-mode .hero-area h1 {
+    color: #e5e7eb;
+}
+
+.subtitle {
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.author-tag {
+    opacity: 0.8;
+}
+
+/* =============================================================
+   4. MAIN CANVAS & APP WRAPPER
+   ============================================================= */
+
+.main-canvas {
+    background-color: var(--bg-main);
+    padding: 50px 20px;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.app {
+    background: var(--bg-card);
+    padding: 2.5rem;
+    border-radius: var(--radius-lg);
+    width: 95%;
+    max-width: 1100px;
+    box-shadow: var(--shadow-soft);
+}
+
+.app header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.instruction-note {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* ---------------------------------------------------------
+   4.1 TYPOGRAPHY
+   --------------------------------------------------------- */
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    /* TYPOGRAPHY WITH GOOGLE FONTS */
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    /*border-bottom: 2px solid var(--accent-color);*/
+    padding-bottom: 10px;
+}
+
+h2 {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+}
+
+/* paragraphs */
+p {
+    margin-bottom: 15px;
+}
+
+/* Ordered/un-ordered lists */
+ul, ol {
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+/* Lists */
+li {
+    margin-bottom: 5px;
+}
+
+
+/* =============================================================
+   5. SEARCH & CONTROL BAR
+   ============================================================= */
+
+.input-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin: 30px 0;
+}
+
+.input-container input {
+    flex: 1 1 260px;
+    padding: 12px 18px;
+    border: 2px solid var(--border-soft);
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+}
+
+.search-btn,
+.geo-btn,
+.clear-btn {
+    border: none;
+    border-radius: 999px;
+    padding: 12px 22px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    font-size: 0.95rem;
+}
+
+.search-btn {
+    background-color: var(--bg-primary);
+    color: white;
+}
+
+.search-btn:hover {
+    background-color: var(--accent);
+    transform: translateY(-2px);
+}
+
+.geo-btn {
+    background-color: #10b981;
+    color: white;
+}
+
+.geo-btn:hover {
+    background-color: #059669;
+    transform: translateY(-2px);
+}
+
+.clear-btn {
+    background-color: #9ca3af;
+    color: white;
+}
+
+.clear-btn:hover {
+    background-color: #6b7280;
+    transform: translateY(-2px);
+}
+
+
+
+/* =============================================================
+   6. CURRENT WEATHER PANEL
+   ============================================================= */
+
+.weather-display-hidden {
+    display: none;
+}
+
+.current-weather-section {
+    margin-bottom: 30px;
+}
+
+.current-weather-card {
+    background: linear-gradient(135deg, var(--bg-primary), var(--bg-primary-soft));
+    color: white;
+    border-radius: var(--radius-lg);
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: center;
+}
+
+.forecast-left {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.current-icon {
+    font-size: 2.8rem;
+}
+
+.animated-icon {
+    animation: floatIcon 3s ease-in-out infinite;
+}
+
+.current-weather-text {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: white;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+
+.current-meta {
+    margin-top: 4px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.current-temp {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.current-desc {
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+.current-extra {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 180px;
+}
+
+.extra-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+}
+
+.extra-label {
+    opacity: 0.8;
+}
+
+.extra-value {
+    font-weight: 600;
+}
+
+
+
+/* =============================================================
+   7. HOURLY FORECAST
+   ============================================================= */
+
+.hourly-forecast-section {
+    margin-bottom: 30px;
+}
+
+.hourly-forecast-section h3,
+.daily-forecast-section h3,
+.chart-section h3 {
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+}
+
+.hourly-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+    padding-bottom: 6px;
+}
+
+.hourly-card {
+    min-width: 90px;
+    background-color: var(--bg-card);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-soft);
+    padding: 10px 8px;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    font-size: 0.8rem;
+}
+
+.hourly-time {
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.hourly-icon {
+    font-size: 1.4rem;
+    margin-bottom: 4px;
+}
+
+.hourly-temp {
+    font-weight: 700;
+}
+
+.hourly-humidity {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+
+
+/* =============================================================
+   8. DAILY FORECAST
+   ============================================================= */
+
+.daily-forecast-section {
+    margin-bottom: 30px;
+}
+
+#forecastList {
+    padding: 0;
+    list-style: none;
+}
+
+.forecast-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    margin-bottom: 10px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-soft);
+    background-color: var(--bg-card);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+}
+
+.forecast-item:nth-child(even) {
+    background-color: rgba(41, 121, 255, 0.04);
+}
+
+.forecast-text {
+    font-size: 1rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.forecast-icon {
+    font-size: 1.4rem;
+}
+
+.forecast-right {
+    display: flex;
+    gap: 10px;
+}
+
+.temp-badge {
+    display: inline-block;
+    min-width: 70px;
+    text-align: center;
+    padding: 8px 12px;
+    background-color: var(--bg-primary);
+    color: white;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border-radius: var(--radius-md);
+    border: 2px solid rgba(0,0,0,0.1);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+
+
+/* =============================================================
+   9. WEEKLY TEMPERATURE CHART
+   ============================================================= */
+
+.chart-section {
+    margin-bottom: 20px;
+}
+
+.chart-container {
+    margin-top: 10px;
+    padding: 16px;
+    background: var(--bg-card);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-soft);
+}
+
+
+
+/* =============================================================
+   10. UTILITIES & ANIMATIONS
+   ============================================================= */
+
+.topButton {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: var(--bg-primary);
+    color: white;
+    padding: 12px 18px;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* Floating icon animation */
+@keyframes floatIcon {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+/* Scrollbar styling */
+.hourly-container::-webkit-scrollbar {
+    height: 6px;
+}
+.hourly-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+.hourly-container::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.8);
+    border-radius: 999px;
+}
+
+/* =============================================================
+   11. Responsive media
+   ============================================================= */
+/* Large Screens */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1400px;
+    }
+}
+
+/* Laptops */
+@media (max-width: 1200px) {
+    .container {
+        width: 95%;
+    }
+}
+
+/* Tablets */
+@media (max-width: 992px) {
+    .project-grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+  /* Styles for tablets and phones go here */
+  .container { flex-direction: column; }
+}
+
+/* =============================================================
+   10. FOOTER
+   ============================================================= */
+
+footer {
+    margin-top: auto;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.footer-line {
+    width: 80%;
+    height: 3px;
+    background-color: var(--bg-primary);
+    margin: 0 auto 16px auto;
+    border-radius: 2px;
+}
+
+footer small {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}

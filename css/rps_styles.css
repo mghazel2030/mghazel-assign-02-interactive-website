@@ -1,0 +1,492 @@
+/* 
+================================================================
+Rock-Paper-Scissors App CSS Stylesheet File: rps_styles.css
+================================================================
+Course: Software Development Bootcamp Course
+Assignment # 2: Interactive Website
+================================================================
+Developer: Mohsen Ghazel
+Version: 27-Mar-2026
+================================================================ 
+TABLE OF CONTENTS:
+================================================================
+  1. Global Defaults & Reset
+  2. Top Navigation Banner
+  3. Hero Section (Titles)
+  4. Main Canvas & Layout
+  5. Start Screen & Instructions Card
+  6. Active Gameplay UI (Timer & Scores)
+  7. Interaction Icons (Choices)
+  8. Action Buttons (Reset/Start/Play Again)
+  9. Victory Modal (Overlay)
+  10. Footer Section
+================================================================
+*/
+
+/* 
+================================================================
+--- 1. GLOBAL DEFAULTS & RESET --- 
+================================================================
+*/
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensures page always fills the screen height */
+    background-color: #f4f7f6;
+}
+
+/* --- Root Design Tokens --- */
+:root {
+    /* Radii */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 18px;
+}
+
+/* 
+================================================================
+--- 2. TOP BANNER --- 
+================================================================
+*/
+.top-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%; /* Changed to percentage for flexibility */
+    background-color: #1a237e;
+    min-height: 100px; /* Use min-height so it can expand if items wrap */
+    height: auto;      /* Allows container to grow if needed */
+    color: white;
+    flex-wrap: wrap;   /* Crucial: allows items to move to next line instead of overlapping */
+}
+
+/* Styled Logo with White Border */
+.top-banner img {
+    height: 80px;               /* Keeps it from being too big */
+    width: auto;
+    border: 2px solid white;    /* The white border */
+    padding: 5px;               /* Space between logo and border */
+    border-radius: var(--radius-sm); /* Matches your global theme radius */
+    background-color: rgba(255, 255, 255, 0.1); /* Optional: slight glow effect */
+    transition: transform 0.3s ease;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 10px;
+    margin: 10px 0;    /* Added vertical margin for when it wraps */
+    flex-wrap: wrap;   /* Allows individual links to wrap on very small screens */
+    justify-content: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #e3f2fd;
+    padding: 8px 15px; /* Slightly reduced padding for better fit */
+    border-radius: 25px;
+    font-weight: 600;
+    white-space: nowrap; /* Keeps link text on one line */
+    transition: background-color 0.3s ease;
+}
+
+/* Mobile Fix: Centers everything when the screen is small */
+@media (max-width: 768px) {
+    .top-banner {
+        flex-direction: column; /* Stacks logo/title above the menu */
+        justify-content: center;
+        padding: 20px;
+    }
+    
+    .nav-links {
+        padding: 0;
+        gap: 5px;
+    }
+
+    /* Styled Logo with White Border */
+    .top-banner img {
+        height: 50px;               /* Keeps it from being too big */
+        width: auto;
+        border: 2px solid white;    /* The white border */
+        padding: 5px;               /* Space between logo and border */
+        border-radius: var(--radius-sm); /* Matches your global theme radius */
+        background-color: rgba(255, 255, 255, 0.1); /* Optional: slight glow effect */
+        transition: transform 0.3s ease;
+    }
+}
+
+.nav-links a.active {
+    background-color: #2979ff;
+    color: white;
+}
+
+
+/* 
+================================================================
+--- 3. HERO AREA --- 
+================================================================
+*/
+.hero-area {
+    text-align: center;
+    padding: 30px 20px;
+    background: #ffffff;
+    border-bottom: 4px solid #1a237e;
+}
+
+.hero-area h1 {
+    font-weight: 800;
+    color: #1a237e;
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+}
+
+/* Standard Bootstrap behavior (often included) */
+.text-muted {
+    color: #6c757d !important; /* Muted gray color */
+}
+
+/* Custom styling for the author name */
+.author-tag {
+    font-weight: 500;       /* Slightly bolder than body text */
+    font-size: 0.9em;      /* Slightly smaller */
+    text-decoration: none; /* If it's a link, remove underline */
+}
+
+/* Combine with text-muted for the specific usage */
+.author-tag.text-muted {
+    opacity: 0.8;          /* Adds extra subtlety */
+}
+
+
+/* --- 
+================================================================
+4. MAIN CANVAS --- 
+================================================================
+*/
+.main-canvas {
+    background-color: #e8f5e9; /* Light Green "Play Area" */
+    padding: 40px 20px;
+    flex-grow: 1; /* Makes green area expand to fill screen */
+    display: flex;
+    justify-content: center;
+}
+
+.game-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 800px; /* Prevents card from getting too wide on large monitors */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+/* 
+   ---------------------------------------------------------
+   TYPOGRAPHY
+   --------------------------------------------------------- 
+*/
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    /* TYPOGRAPHY WITH GOOGLE FONTS */
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    /*border-bottom: 2px solid var(--accent-color);*/
+    padding-bottom: 10px;
+}
+
+h2 {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+}
+
+/* paragraphs */
+p {
+    margin-bottom: 15px;
+}
+
+/* Ordered/un-ordered lists */
+ul, ol {
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+/* Lists */
+li {
+    margin-bottom: 5px;
+}
+
+/* 
+================================================================
+--- 5. START SCREEN & RULES CARD --- 
+================================================================
+*/
+/* The rules box that appears ONLY before match starts */
+.rules-card {
+    background-color: #ffffff;
+    border: 2px solid #1a237e;
+    border-radius: 12px;
+    max-width: 500px;
+    margin: 20px auto 0; /* Centers and adds top-spacing from button */
+    padding: 20px;
+    text-align: left;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.rules-header {
+    font-size: 1.1rem;
+    color: #1a237e;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 8px;
+}
+
+.rule-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.rule-icon {
+    font-size: 1.2rem;
+    background: #e3f2fd;
+    padding: 5px;
+    border-radius: 6px;
+    min-width: 35px;
+    text-align: center;
+}
+
+.rule-item p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+/* --- 
+================================================================
+6. ACTIVE GAMEPLAY UI (Timer & Scoreboard) --- 
+================================================================
+*/
+#timer-display {
+    background: #1a237e;
+    color: #ffd54f; /* Bright yellow for visibility */
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    display: inline-block;
+    margin-bottom: 50px; /* Wide spacing to avoid crowding */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.scoreboard-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 50px;
+}
+
+.score-card {
+    background: #f1f8e9;
+    border: 2px solid #1a237e;
+    border-radius: 15px;
+    padding: 15px;
+    min-width: 120px;
+}
+
+.score-num {
+    font-size: 3rem;
+    margin: 0;
+    color: #2e7d32;
+    font-weight: bold;
+}
+
+.vs-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #1a237e;
+}
+
+/* --- 
+================================================================
+7. INTERACTION ICONS (Choices) --- 
+================================================================
+*/
+.choices-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 50px;
+}
+
+.choice-btn {
+    background: #fff;
+    border: 2px solid #ddd;
+    border-radius: 15px;
+    padding: 20px;
+    font-size: 3rem;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+.choice-btn:hover {
+    border-color: #2979ff;
+    transform: translateY(-5px); /* Gentle float effect */
+    background: #e3f2fd;
+}
+
+.choice-btn:active {
+    transform: scale(0.9); /* Feedback click effect */
+}
+
+.choice-btn span {
+    display: block;
+    font-size: 0.9rem; /* Clean text below icon */
+    font-weight: 700;
+    margin-top: 10px;
+    color: #333;
+}
+
+/* --- 
+================================================================
+8. ACTION BUTTONS --- 
+================================================================
+*/
+.btn-start-match, .btn-reset-match, .btn-play-again {
+    padding: 12px 35px;
+    border-radius: 50px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+    border: none;
+    font-size: 1rem;
+    letter-spacing: 1px;
+}
+
+.btn-start-match {
+    background: #1a237e;
+    color: white;
+    box-shadow: 0 4px 15px rgba(26, 35, 126, 0.3);
+}
+
+.btn-reset-match {
+    background: #d32f2f;
+    color: white;
+}
+
+.btn-play-again {
+    background: #ffa000; /* Gold victory button */
+    color: white;
+}
+
+.btn-start-match:hover, .btn-play-again:hover {
+    transform: scale(1.05);
+}
+
+/* --- 
+================================================================
+9. VICTORY MODAL (Overlay) --- 
+================================================================
+*/
+.modal-overlay {
+    position: fixed; /* Floats on top of everything */
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.85); /* Dims the entire background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Ensures it stays above all other content */
+}
+
+.modal-content {
+    background: white;
+    padding: 50px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.trophy {
+    font-size: 5rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* =============================================================
+   10. Responsive media
+   ============================================================= */
+/* Large Screens */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1400px;
+    }
+}
+
+/* Laptops */
+@media (max-width: 1200px) {
+    .container {
+        width: 95%;
+    }
+}
+
+/* Tablets */
+@media (max-width: 992px) {
+    .project-grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+  /* Styles for tablets and phones go here */
+  .container { flex-direction: column; }
+}
+
+/* 
+================================================================
+--- 11. FOOTER SECTION --- 
+================================================================
+*/
+
+footer {
+    padding: 40px 0;
+    text-align: center;
+    background: #f4f7f6;
+}
+
+.footer-line {
+    width: 80%;
+    height: 3px;
+    background-color: #1a237e;
+    margin: 0 auto 20px auto;
+}
+
+/* Floating "Back to Top" circular button */
+.topButton {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #1a237e;
+    color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+

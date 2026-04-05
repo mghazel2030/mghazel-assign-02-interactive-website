@@ -1,0 +1,542 @@
+/* 
+================================================================
+Weather App CSS Stylesheet File: weather_styles.css
+================================================================
+Course: Software Development Bootcamp Course
+Assignment # 2: Interactive Website
+================================================================
+Developer: Mohsen Ghazel
+Version: 31-Mar-2026
+================================================================ 
+TABLE OF CONTENTS:
+================================================================
+SECTION 1: Global Reset & Base Typography
+SECTION 2. TOP NAVIGATION BAR
+SECTION 3: Hero / Banner
+SECTION 4: Main Layout Container
+SECTION 5: Map Container
+SECTION 6: Sidebar (Live Bus List)
+SECTION 7: Custom Bus Icons
+SECTION 8: Stop Markers
+SECTION 9: Footer
+================================================================
+*/
+
+/* =========================================================
+   SECTION 1: Global Reset & Base Typography
+   - Basic page reset
+   - Body font, background
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #eef3f7;
+  color: #222;
+}
+
+:root {
+    /* Colors */
+    --bg-main: #e8f5e9;
+    --bg-card: #ffffff;
+    --bg-primary: #1a237e;
+    --bg-primary-soft: #283593;
+    --accent: #2979ff;
+
+    /* Text */
+    --text-main: #222;
+    --text-muted: #666;
+
+    /* Borders & Shadows */
+    --border-soft: #ddd;
+    --shadow-soft: 0 8px 30px rgba(0,0,0,0.05);
+
+    /* Radii */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 18px;
+
+    /* Spacing */
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+}
+
+/* 
+   =============================================================
+   SECTION 2. TOP NAVIGATION BAR
+   - Top banner with menu
+   ============================================================= 
+*/
+/* 2. HEADER & NAVIGATION (Updated) */
+.top-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%; /* Changed to percentage for flexibility */
+    background-color: #1a237e;
+    min-height: 100px; /* Use min-height so it can expand if items wrap */
+    height: auto;      /* Allows container to grow if needed */
+    color: white;
+    flex-wrap: wrap;   /* Crucial: allows items to move to next line instead of overlapping */
+}
+
+/* Styled Logo with White Border */
+.top-banner img {
+    height: 80px;               /* Keeps it from being too big */
+    width: auto;
+    border: 2px solid white;    /* The white border */
+    padding: 5px;               /* Space between logo and border */
+    border-radius: var(--radius-sm); /* Matches your global theme radius */
+    background-color: rgba(255, 255, 255, 0.1); /* Optional: slight glow effect */
+    transition: transform 0.3s ease;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 10px;
+    margin: 10px 0;    /* Added vertical margin for when it wraps */
+    flex-wrap: wrap;   /* Allows individual links to wrap on very small screens */
+    justify-content: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #e3f2fd;
+    padding: 8px 15px; /* Slightly reduced padding for better fit */
+    border-radius: 25px;
+    font-weight: 600;
+    white-space: nowrap; /* Keeps link text on one line */
+    transition: background-color 0.3s ease;
+}
+
+/* Mobile Fix: Centers everything when the screen is small */
+@media (max-width: 768px) {
+    .top-banner {
+        flex-direction: column; /* Stacks logo/title above the menu */
+        justify-content: center;
+        padding: 20px;
+    }
+    
+    .nav-links {
+        padding: 0;
+        gap: 5px;
+    }
+
+    /* Styled Logo with White Border */
+    .top-banner img {
+        height: 50px;               /* Keeps it from being too big */
+        width: auto;
+        border: 2px solid white;    /* The white border */
+        padding: 5px;               /* Space between logo and border */
+        border-radius: var(--radius-sm); /* Matches your global theme radius */
+        background-color: rgba(255, 255, 255, 0.1); /* Optional: slight glow effect */
+        transition: transform 0.3s ease;
+    }
+}
+
+.nav-links a.active {
+    background-color: #2979ff;
+    color: white;
+}
+
+
+/* =========================================================
+   SECTION 3: Hero / Banner
+   - Top header with title and subtitle
+   ========================================================= 
+*/
+.hero-area {
+    text-align: center;
+    padding: 30px 20px;
+    background: #ffffff;
+    border-bottom: 4px solid #1a237e;
+}
+
+.hero-area h1 {
+    font-weight: 800;
+    color: #1a237e;
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+}
+
+body.dark-mode .hero-area h1 {
+    color: #e5e7eb;
+}
+
+.subtitle {
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.author-tag {
+    opacity: 0.8;
+}
+
+/* =========================================================
+   SECTION 4: Main Layout Container
+   - Flex layout for controls + map
+   - Ensures full viewport height usage
+   ========================================================= */
+
+.app-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 70px); /* subtract banner height */
+}
+
+/* 
+   ---------------------------------------------------------
+   TYPOGRAPHY
+   --------------------------------------------------------- 
+*/
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    /* TYPOGRAPHY WITH GOOGLE FONTS */
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    /*border-bottom: 2px solid var(--accent-color);*/
+    padding-bottom: 10px;
+}
+
+h2 {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+}
+
+/* paragraphs */
+p {
+    margin-bottom: 15px;
+}
+
+/* Ordered/un-ordered lists */
+ul, ol {
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+/* Lists */
+li {
+    margin-bottom: 5px;
+}
+
+/* =========================================================
+   SECTION 4: Top Controls Bar
+   - Route input, direction filter, status text
+   ========================================================= */
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 14px;
+  background: #ffffff;
+  border-bottom: 1px solid #ddd;
+  z-index: 500;
+}
+
+.controls-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.controls-right {
+  font-size: 13px;
+  color: #555;
+}
+
+.controls input,
+.controls select {
+  padding: 6px 8px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid #aaa;
+}
+
+.controls button {
+  padding: 6px 12px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: none;
+  background-color: #0072ff;
+  color: white;
+  cursor: pointer;
+}
+
+.controls button:hover {
+  background-color: #005fcc;
+}
+
+/* =========================================================
+   SECTION 5: Map Container
+   - Full remaining height
+   - Leaflet map styling
+   ========================================================= */
+
+#map {
+  flex: 1;
+  width: 100%;
+}
+
+/* Move Leaflet zoom controls to bottom-right */
+.leaflet-control-zoom {
+  position: absolute !important;
+  bottom: 20px;
+  right: 20px;
+  left: auto !important;
+  top: auto !important;
+}
+
+/* 
+   ---------------------------------------------------------
+   TYPOGRAPHY
+   --------------------------------------------------------- 
+*/
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    /* TYPOGRAPHY WITH GOOGLE FONTS */
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    /*border-bottom: 2px solid var(--accent-color);*/
+    padding-bottom: 10px;
+}
+
+h2 {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+}
+
+/* paragraphs */
+p {
+    margin-bottom: 15px;
+}
+
+/* Ordered/un-ordered lists */
+ul, ol {
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+/* Lists */
+li {
+    margin-bottom: 5px;
+}
+
+
+/* =========================================================
+   SECTION 6: Sidebar (Live Bus List)
+   - Positioned on right side
+   - Below hero and controls
+   - High contrast, card-like appearance
+   ========================================================= */
+
+/* Sidebar: compact, centered vertically, right side */
+#sidebar {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);   /* center vertically */
+  width: 240px;
+  max-height: 70vh;
+  overflow-y: auto;
+
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 10px;
+  padding: 10px 12px;
+
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+}
+
+/* Sidebar title */
+#sidebar h3 {
+  margin: 0 0 6px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #222;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 4px;
+}
+
+/* Sidebar list */
+#sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Sidebar list items: compact */
+#sidebar li {
+  padding: 6px 6px;
+  margin-bottom: 4px;
+  border-radius: 6px;
+
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  font-size: 12px;       /* smaller font */
+  font-weight: 500;
+  cursor: pointer;
+
+  transition: background 0.15s ease;
+}
+
+#sidebar li:hover {
+  background: #f2f2f2;
+}
+
+/* Colored route badge matching map icon color */
+.route-badge {
+  min-width: 28px;
+  height: 22px;
+  padding: 0 4px;
+
+  border-radius: 5px;
+  color: white;
+  font-size: 11px;       /* smaller, cleaner */
+  font-weight: bold;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: 2px solid white;
+  box-shadow: 0 0 3px rgba(0,0,0,0.25);
+}
+
+/* =========================================================
+   SECTION 7: Custom Bus Icons
+   - Colored label + direction arrow
+   - Used as Leaflet divIcon
+   ========================================================= */
+
+.bus-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bus-arrow {
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 10px solid #000; /* color overridden inline */
+  margin-bottom: 2px;
+}
+
+.bus-label {
+  min-width: 28px;
+  height: 24px;
+  border-radius: 6px;
+  color: white;
+  font-size: 13px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid white;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+}
+
+/* =========================================================
+   SECTION 8: Stop Markers
+   - Small circles for bus stops
+   ========================================================= */
+
+.stop-marker {
+  background: #ffffff;
+  border: 2px solid #0072ff;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+}
+
+/* Optional: style Leaflet popup text a bit */
+.leaflet-popup-content {
+  font-size: 13px;
+}
+
+/* =============================================================
+   SECTION 9. Responsive media
+   ============================================================= */
+/* Large Screens */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1400px;
+    }
+}
+
+/* Laptops */
+@media (max-width: 1200px) {
+    .container {
+        width: 95%;
+    }
+}
+
+/* Tablets */
+@media (max-width: 992px) {
+    .project-grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+  /* Styles for tablets and phones go here */
+  .container { flex-direction: column; }
+}
+
+/* =========================================================
+   SECTION 10: Footer
+   - Footer
+   =========================================================-
+*/
+footer {
+    padding: 40px 0;
+    text-align: center;
+    background: #f4f7f6;
+}
+
+.footer-line {
+    width: 80%;
+    height: 3px;
+    background-color: #1a237e;
+    margin: 0 auto 20px auto;
+}
+
+/* Floating "Back to Top" circular button */
+.topButton {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #1a237e;
+    color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
